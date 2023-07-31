@@ -1,4 +1,4 @@
-import 'package:dream_diary/screens/calendar_screen.dart';
+import 'package:dream_diary/screens/calendar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
