@@ -20,7 +20,6 @@ class DreamListItem extends StatelessWidget {
           ),
         ),
         title: Text(dream.title),
-        tileColor: Colors.amber,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

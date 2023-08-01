@@ -33,50 +33,81 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dream Diary'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.settings),
-          ),
+    var backgroundDecoration = const BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          Color.fromARGB(255, 13, 16, 65),
+          Color.fromARGB(255, 22, 27, 95),
         ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            TableCalendar(
-              focusedDay: _focusedDay,
-              firstDay: DateTime(DateTime.now().year - 10),
-              lastDay: DateTime.now(),
-              availableCalendarFormats: const {CalendarFormat.month: 'Month'},
-              startingDayOfWeek: StartingDayOfWeek.monday,
-              selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
-              },
-              onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
-                });
-              },
-              eventLoader: (day) => _getDreamsForDay(day),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
+    );
+
+    var calendarStyle = const CalendarStyle(
+      markerDecoration: BoxDecoration(
+        color: Color.fromARGB(255, 108, 215, 245),
+        shape: BoxShape.circle,
+      ),
+      weekendTextStyle: TextStyle(color: Color.fromARGB(255, 108, 215, 245)),
+    );
+
+    var daysStyle = const DaysOfWeekStyle(
+      weekdayStyle: TextStyle(color: Color.fromARGB(255, 108, 215, 245)),
+      weekendStyle: TextStyle(color: Color.fromARGB(255, 11, 136, 171)),
+    );
+
+    return Container(
+      decoration: backgroundDecoration,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Dream Diary'),
+          actions: [
+            IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.add),
-              label: const Text('Add dream'),
+              icon: const Icon(Icons.settings),
             ),
-            const SizedBox(height: 10),
-            // Display dreams for selected day
-            DreamsList(
-              dreams: _getDreamsForDay(_focusedDay),
-            ),
-            const SizedBox(height: 10),
           ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              // Calendar view
+              TableCalendar(
+                daysOfWeekStyle: daysStyle,
+                calendarStyle: calendarStyle,
+                focusedDay: _focusedDay,
+                firstDay: DateTime(DateTime.now().year - 10),
+                lastDay: DateTime.now(),
+                availableCalendarFormats: const {CalendarFormat.month: 'Month'},
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                selectedDayPredicate: (day) {
+                  return isSameDay(_selectedDay, day);
+                },
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay = focusedDay;
+                  });
+                },
+                eventLoader: (day) => _getDreamsForDay(day),
+              ),
+              const SizedBox(height: 20),
+              // Add button
+              ElevatedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+                label: const Text('Add dream'),
+              ),
+              const SizedBox(height: 10),
+              // Display dreams for selected day
+              DreamsList(
+                dreams: _getDreamsForDay(_selectedDay!),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );

@@ -34,4 +34,9 @@ var dummyDreams = [
     description: 'This is a dream',
     dreamType: dreamTypes[DreamTypes.nonLucid]!,
   ),
+  Dream(
+    title: 'Dream 7',
+    description: 'This is a dream',
+    dreamType: dreamTypes[DreamTypes.nonLucid]!,
+  ),
 ];
