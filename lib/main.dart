@@ -34,6 +34,17 @@ class MyApp extends StatelessWidget {
             foregroundColor: kSecondaryColorScheme.onPrimary,
           ),
         ),
+        inputDecorationTheme: const InputDecorationTheme()
+            .copyWith(
+          floatingLabelStyle:
+              TextStyle(color: kSecondaryColorScheme.primaryContainer),
+          focusColor: kSecondaryColorScheme.primaryContainer,
+          border: const OutlineInputBorder(),
+          focusedBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: kSecondaryColorScheme.primaryContainer),
+          ),
+        ),
       ),
       home: const CalendarScreen(),
     );

@@ -14,12 +14,12 @@ class Dream {
     required this.title,
     required this.description,
     required this.dreamType,
-    String? date,
-  }) : date = date ?? DateTime.now().toIso8601String();
+    DateTime? date,
+  }) : date = date ?? DateTime.now();
   // ^ Set current date as date, if there isn't a date yet
 
   final String title;
   final String description;
   final DreamType dreamType;
-  final String date;
+  final DateTime date;
 }

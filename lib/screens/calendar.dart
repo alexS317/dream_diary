@@ -1,5 +1,6 @@
 import 'package:dream_diary/data/dummy_dreams.dart';
 import 'package:dream_diary/models/dream.dart';
+import 'package:dream_diary/screens/add_dream.dart';
 import 'package:dream_diary/utils.dart';
 import 'package:dream_diary/widgets/dreams_list.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,18 @@ class _CalendarScreenState extends State<CalendarScreen> {
   List<Dream> _getDreamsForDay(DateTime day) {
     return dummyDreams
         .where((element) =>
-            DateTime.tryParse(element.date)!.day == day.day &&
-            DateTime.tryParse(element.date)!.month == day.month &&
-            DateTime.tryParse(element.date)!.year == day.year)
+            element.date.day == day.day &&
+            element.date.month == day.month &&
+            element.date.year == day.year)
         .toList();
+  }
+
+  void _openAddScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => AddDreamScreen(selectedDate: _selectedDay!),
+      ),
+    );
   }
 
   @override
@@ -34,10 +43,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var backgroundDecoration = const BoxDecoration(
-      gradient: kBackgroundGradient,
-    );
-
     var calendarStyle = CalendarStyle(
       markerDecoration: BoxDecoration(
         color: kSecondaryColors[1],
@@ -52,7 +57,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     );
 
     return Container(
-      decoration: backgroundDecoration,
+      decoration: const BoxDecoration(gradient: kBackgroundGradient),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Dream Diary'),
@@ -91,7 +96,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
               // Add button
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: _openAddScreen,
                 icon: const Icon(Icons.add),
                 label: const Text('Add dream'),
               ),

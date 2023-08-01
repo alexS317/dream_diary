@@ -6,13 +6,13 @@ var dummyDreams = [
     title: 'Dream 1',
     description: 'This is a dream',
     dreamType: dreamTypes[DreamTypes.lucid]!,
-    date: DateTime.now().subtract(Duration(days: 2)).toIso8601String(),
+    date: DateTime.now().subtract(Duration(days: 2)),
   ),
   Dream(
     title: 'Dream 2',
     description: 'This is a dream',
     dreamType: dreamTypes[DreamTypes.halfLucid]!,
-    date: DateTime.now().subtract(Duration(days: 2)).toIso8601String(),
+    date: DateTime.now().subtract(Duration(days: 2)),
   ),
   Dream(
     title: 'Dream 3',
