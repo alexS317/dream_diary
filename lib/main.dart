@@ -1,8 +1,6 @@
 import 'package:dream_diary/screens/calendar.dart';
+import 'package:dream_diary/utils.dart';
 import 'package:flutter/material.dart';
-
-var kColorScheme =
-    ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 3, 9, 73));
 
 void main() {
   runApp(const MyApp());
@@ -32,8 +30,8 @@ class MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: kColorScheme.onPrimary,
-            foregroundColor: kColorScheme.primary,
+            backgroundColor: kSecondaryColorScheme.primary,
+            foregroundColor: kSecondaryColorScheme.onPrimary,
           ),
         ),
       ),

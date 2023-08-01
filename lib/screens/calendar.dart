@@ -1,5 +1,6 @@
 import 'package:dream_diary/data/dummy_dreams.dart';
 import 'package:dream_diary/models/dream.dart';
+import 'package:dream_diary/utils.dart';
 import 'package:dream_diary/widgets/dreams_list.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -34,27 +35,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     var backgroundDecoration = const BoxDecoration(
-      gradient: LinearGradient(
-        colors: [
-          Color.fromARGB(255, 13, 16, 65),
-          Color.fromARGB(255, 22, 27, 95),
-        ],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      ),
+      gradient: kBackgroundGradient,
     );
 
-    var calendarStyle = const CalendarStyle(
+    var calendarStyle = CalendarStyle(
       markerDecoration: BoxDecoration(
-        color: Color.fromARGB(255, 108, 215, 245),
+        color: kSecondaryColors[1],
         shape: BoxShape.circle,
       ),
-      weekendTextStyle: TextStyle(color: Color.fromARGB(255, 108, 215, 245)),
+      weekendTextStyle: TextStyle(color: kSecondaryColors[1]),
     );
 
-    var daysStyle = const DaysOfWeekStyle(
-      weekdayStyle: TextStyle(color: Color.fromARGB(255, 108, 215, 245)),
-      weekendStyle: TextStyle(color: Color.fromARGB(255, 11, 136, 171)),
+    var daysStyle = DaysOfWeekStyle(
+      weekdayStyle: TextStyle(color: kSecondaryColors[1]),
+      weekendStyle: TextStyle(color: kSecondaryColors[0]),
     );
 
     return Container(
@@ -94,6 +88,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 eventLoader: (day) => _getDreamsForDay(day),
               ),
               const SizedBox(height: 20),
+
               // Add button
               ElevatedButton.icon(
                 onPressed: () {},
@@ -101,6 +96,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 label: const Text('Add dream'),
               ),
               const SizedBox(height: 10),
+
               // Display dreams for selected day
               DreamsList(
                 dreams: _getDreamsForDay(_selectedDay!),

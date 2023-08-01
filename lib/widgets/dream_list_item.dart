@@ -15,7 +15,7 @@ class DreamListItem extends StatelessWidget {
           height: 20,
           width: 20,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            shape: BoxShape.circle,
             color: dream.dreamType.color,
           ),
         ),
