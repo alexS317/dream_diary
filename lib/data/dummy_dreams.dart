@@ -11,13 +11,13 @@ var dummyDreams = [
   Dream(
     title: 'Dream 2',
     description: 'This is a dream',
-    dreamType: dreamTypes[DreamTypes.halfLucid]!,
+    dreamType: dreamTypes[DreamTypes.partlyLucid]!,
     date: DateTime.now().subtract(Duration(days: 2)),
   ),
   Dream(
     title: 'Dream 3',
     description: 'This is a dream',
-    dreamType: dreamTypes[DreamTypes.nonLucid]!,
+    dreamType: dreamTypes[DreamTypes.notLucid]!,
   ),
     Dream(
     title: 'Dream 4',
@@ -27,16 +27,16 @@ var dummyDreams = [
     Dream(
     title: 'Dream 5',
     description: 'This is a dream',
-    dreamType: dreamTypes[DreamTypes.halfLucid]!,
+    dreamType: dreamTypes[DreamTypes.partlyLucid]!,
   ),
     Dream(
     title: 'Dream 6',
     description: 'This is a dream',
-    dreamType: dreamTypes[DreamTypes.nonLucid]!,
+    dreamType: dreamTypes[DreamTypes.notLucid]!,
   ),
   Dream(
     title: 'Dream 7',
     description: 'This is a dream',
-    dreamType: dreamTypes[DreamTypes.nonLucid]!,
+    dreamType: dreamTypes[DreamTypes.notLucid]!,
   ),
 ];

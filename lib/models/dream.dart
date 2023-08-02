@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-enum DreamTypes { lucid, halfLucid, nonLucid }
+final dateFormatter = DateFormat.yMd();
+
+enum DreamTypes { lucid, partlyLucid, notLucid }
 
 class DreamType {
   const DreamType(this.title, this.color);
@@ -22,4 +25,8 @@ class Dream {
   final String description;
   final DreamType dreamType;
   final DateTime date;
+
+  String get formattedDate {
+    return dateFormatter.format(date);
+  }
 }

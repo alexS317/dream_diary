@@ -27,12 +27,18 @@ class _CalendarScreenState extends State<CalendarScreen> {
         .toList();
   }
 
-  void _openAddScreen() {
-    Navigator.of(context).push(
+  void _addDream() async {
+    final newDream = await Navigator.of(context).push<Dream>(
       MaterialPageRoute(
         builder: (context) => AddDreamScreen(selectedDate: _selectedDay!),
       ),
     );
+
+    if (newDream == null) return;
+
+    setState(() {
+      dummyDreams.add(newDream);
+    });
   }
 
   @override
@@ -96,7 +102,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
               // Add button
               ElevatedButton.icon(
-                onPressed: _openAddScreen,
+                onPressed: _addDream,
                 icon: const Icon(Icons.add),
                 label: const Text('Add dream'),
               ),

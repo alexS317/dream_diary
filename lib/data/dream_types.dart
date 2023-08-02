@@ -6,12 +6,12 @@ final dreamTypes = {
     'lucid',
     kSecondaryColors[0],
   ),
-  DreamTypes.halfLucid: DreamType(
-    'half-lucid',
+  DreamTypes.partlyLucid: DreamType(
+    'partly lucid',
     kSecondaryColors[1],
   ),
-  DreamTypes.nonLucid: DreamType(
-    'non-lucid',
+  DreamTypes.notLucid: DreamType(
+    'not lucid',
     kSecondaryColors[2],
   ),
 };

@@ -2,6 +2,9 @@ import 'package:dream_diary/data/dream_types.dart';
 import 'package:dream_diary/models/dream.dart';
 import 'package:dream_diary/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final dateFormatter = DateFormat.yMd();
 
 class AddDreamScreen extends StatefulWidget {
   const AddDreamScreen({super.key, required this.selectedDate});
@@ -32,12 +35,14 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
           dreamType: _selectedDreamType);
 
       // Close add screen
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(newDream);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final formattedDate = dateFormatter.format(widget.selectedDate);
+
     return Container(
       decoration: const BoxDecoration(gradient: kBackgroundGradient),
       child: Scaffold(
@@ -56,7 +61,13 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                   // Date
                   Row(
                     children: [
-                      Text('Date: ${widget.selectedDate}'),
+                      Text(
+                        'Date: $formattedDate',
+                        style:
+                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -80,6 +91,7 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                   // Description
                   TextFormField(
                     keyboardType: TextInputType.multiline,
+                    textCapitalization: TextCapitalization.sentences,
                     decoration: const InputDecoration(
                       labelText: 'Description',
                       alignLabelWithHint: true,
@@ -102,6 +114,19 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                   // Radio buttons
                   Column(
                     children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Dream Type:',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ],
+                      ),
                       RadioListTile(
                         title: Text(dreamTypes[DreamTypes.lucid]!.title),
                         tileColor: Colors.transparent,
@@ -115,9 +140,9 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                         },
                       ),
                       RadioListTile(
-                        title: Text(dreamTypes[DreamTypes.halfLucid]!.title),
+                        title: Text(dreamTypes[DreamTypes.partlyLucid]!.title),
                         tileColor: Colors.transparent,
-                        value: dreamTypes[DreamTypes.halfLucid],
+                        value: dreamTypes[DreamTypes.partlyLucid],
                         groupValue: _selectedDreamType,
                         onChanged: (value) {
                           setState(() {
@@ -127,9 +152,9 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                         },
                       ),
                       RadioListTile(
-                        title: Text(dreamTypes[DreamTypes.nonLucid]!.title),
+                        title: Text(dreamTypes[DreamTypes.notLucid]!.title),
                         tileColor: Colors.transparent,
-                        value: dreamTypes[DreamTypes.nonLucid],
+                        value: dreamTypes[DreamTypes.notLucid],
                         groupValue: _selectedDreamType,
                         onChanged: (value) {
                           setState(() {
