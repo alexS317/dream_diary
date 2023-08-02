@@ -1,3 +1,4 @@
+import 'package:dream_diary/screens/auth.dart';
 import 'package:dream_diary/screens/calendar.dart';
 import 'package:dream_diary/utils.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const CalendarScreen(),
+      home: const AuthScreen(),
     );
   }
 }

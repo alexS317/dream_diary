@@ -34,45 +34,47 @@ class DreamDetailsScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Date
-              Text(
-                dream.formattedDate,
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Date
+                Text(
+                  dream.formattedDate,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const SizedBox(height: 20),
+          
+                // Dream type
+                Row(
+                  children: [
+                    Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: dream.dreamType.color,
+                      ),
                     ),
-              ),
-              const SizedBox(height: 20),
-
-              // Dream type
-              Row(
-                children: [
-                  Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: dream.dreamType.color,
+                    const SizedBox(width: 10),
+                    Text(
+                      dream.dreamType.title,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    dream.dreamType.title,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-
-              // Description
-              const Divider(),
-              const SizedBox(height: 10),
-              Text(dream.description),
-            ],
+                  ],
+                ),
+                const SizedBox(height: 10),
+          
+                // Description
+                const Divider(),
+                const SizedBox(height: 10),
+                Text(dream.description),
+              ],
+            ),
           ),
         ),
       ),

@@ -61,7 +61,7 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
       decoration: const BoxDecoration(gradient: kBackgroundGradient),
       child: Scaffold(
         appBar: AppBar(
-          title: hasOldDream ? const Text('Edit Dream') : const Text('New Dream'),
+          title: Text(hasOldDream ? 'Edit Dream' : 'New Dream'),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -135,12 +135,10 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                         children: [
                           Text(
                             'Dream Type:',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style:
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                           ),
                         ],
                       ),
