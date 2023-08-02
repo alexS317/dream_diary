@@ -7,9 +7,10 @@ import 'package:intl/intl.dart';
 final dateFormatter = DateFormat.yMd();
 
 class AddDreamScreen extends StatefulWidget {
-  const AddDreamScreen({super.key, required this.selectedDate});
+  const AddDreamScreen({super.key, required this.selectedDate, this.oldDream});
 
   final DateTime selectedDate;
+  final Dream? oldDream;
 
   @override
   State<AddDreamScreen> createState() => _AddDreamScreenState();
@@ -17,10 +18,22 @@ class AddDreamScreen extends StatefulWidget {
 
 class _AddDreamScreenState extends State<AddDreamScreen> {
   final _formKey = GlobalKey<FormState>(); // Create key to handle form
+  // final _titleController = TextEditingController();
+  // final _descriptionController = TextEditingController();
 
   var _enteredTitle = '';
   var _enteredDescription = '';
   var _selectedDreamType = dreamTypes[DreamTypes.lucid]!;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.oldDream != null) {
+      _enteredTitle = widget.oldDream!.title;
+      _enteredDescription = widget.oldDream!.description;
+      _selectedDreamType = widget.oldDream!.dreamType;
+    }
+  }
 
   // Save a new dream
   void _saveDream() {
@@ -42,12 +55,13 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
   @override
   Widget build(BuildContext context) {
     final formattedDate = dateFormatter.format(widget.selectedDate);
+    final bool hasOldDream = widget.oldDream != null;
 
     return Container(
       decoration: const BoxDecoration(gradient: kBackgroundGradient),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('New Dream'),
+          title: hasOldDream ? const Text('Edit Dream') : const Text('New Dream'),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -76,6 +90,7 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                   TextFormField(
                     maxLength: 50,
                     decoration: const InputDecoration(labelText: 'Title'),
+                    initialValue: _enteredTitle,
                     validator: (value) {
                       if (value == null ||
                           value.trim().isEmpty ||
@@ -99,6 +114,7 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                     maxLength: 5000,
                     maxLines: null,
                     minLines: 10,
+                    initialValue: _enteredDescription,
                     validator: (value) {
                       if (value == null ||
                           value.trim().isEmpty ||
@@ -107,6 +123,7 @@ class _AddDreamScreenState extends State<AddDreamScreen> {
                       }
                       return null;
                     },
+                    onChanged: (value) => _enteredDescription = value,
                     onSaved: (newValue) => _enteredDescription = newValue!,
                   ),
                   const SizedBox(height: 10),

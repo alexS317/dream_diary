@@ -1,4 +1,5 @@
 import 'package:dream_diary/models/dream.dart';
+import 'package:dream_diary/screens/add_dream.dart';
 import 'package:dream_diary/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,14 @@ class DreamDetailsScreen extends StatelessWidget {
   const DreamDetailsScreen({super.key, required this.dream});
 
   final Dream dream;
+
+  void _editDream(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => AddDreamScreen(selectedDate: dream.date, oldDream: dream),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +25,9 @@ class DreamDetailsScreen extends StatelessWidget {
           title: Text(dream.title),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _editDream(context);
+              },
               icon: const Icon(Icons.edit),
             ),
           ],
